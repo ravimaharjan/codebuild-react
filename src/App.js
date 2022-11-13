@@ -1,3 +1,4 @@
+/* eslint-disable react/react-in-jsx-scope */
 import logo from './logo.svg';
 import './App.css';
 
@@ -12,7 +13,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          Learn React library
         </a>
       </header>
     </div>
