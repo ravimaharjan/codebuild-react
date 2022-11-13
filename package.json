@@ -15,7 +15,18 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:nowatch": "react-scripts test --watchAll=false",
+    "lint-staged": "lint-staged",
     "eject": "react-scripts eject"
+  },
+  "pre-commit": [
+    "lint-staged",
+    "test:nowatch"
+  ],
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix"
+    ]
   },
   "eslintConfig": {
     "extends": [
@@ -34,5 +45,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint": "^8.27.0",
+    "eslint-plugin-react": "^7.31.10",
+    "lint-staged": "^12.0.3",
+    "pre-commit": "^1.2.2"
   }
 }
