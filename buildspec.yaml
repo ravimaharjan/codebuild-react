@@ -14,3 +14,12 @@ phases:
     commands:
       - echo Running tests
       - npm run test:nowatch
+      - echo building and tagging docker image
+      - aws ecr get-login-password --region ap-southeast-2 | docker login --username AWS --password-stdin 535662744569.dkr.ecr.ap-southeast-2.amazonaws.com
+      - docker build -t demoreact .
+      - docker tag demoreact:latest 535662744569.dkr.ecr.ap-southeast-2.amazonaws.com/demoreact:latest
+
+  post_build:
+    commands:
+      - echo pushing image to the ECR
+      - docker push 535662744569.dkr.ecr.ap-southeast-2.amazonaws.com/demoreact:latest
