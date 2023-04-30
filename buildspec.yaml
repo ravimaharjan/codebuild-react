@@ -25,6 +25,6 @@ phases:
       - docker push 535662744569.dkr.ecr.ap-southeast-2.amazonaws.com/demoreact:latest
       - printf '[{"name":"react","imageUri":"535662744569.dkr.ecr.ap-southeast-2.amazonaws.com/demoreact:latest"}]' > imagedefinitions.json
       - cat imagedefinitions.json
-artifacts:
-  files:
-    - imagedefinitions.json
+# artifacts:
+#   files:
+#     - imagedefinitions.json
