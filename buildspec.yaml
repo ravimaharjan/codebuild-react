@@ -20,7 +20,7 @@ phases:
       - echo building and tagging docker image
       - echo Building Packages for "$CODEBUILD_SOURCE_REPO_URL" on "$CODEBUILD_WEBHOOK_HEAD_REF" branch with build no "$CODEBUILD_BUILD_NUMBER" with commit "$CODEBUILD_RESOLVED_SOURCE_VERSION" triggered by "$CODEBUILD_INITIATOR"
       - aws ecr get-login-password --region ap-southeast-2 | docker login --username AWS --password-stdin 535662744569.dkr.ecr.ap-southeast-2.amazonaws.com
-      - docker build -t demoreact .
+      - docker build -t demoreact:latest .
       - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:IMAGE_TAG
 
   post_build:
