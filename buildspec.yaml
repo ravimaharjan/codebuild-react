@@ -8,21 +8,26 @@ phases:
   pre_build:
     commands:
       - echo Installing dependencies
-      - npm install
-
+      - REPOSITORY_URI=535662744569.dkr.ecr.ap-southeast-2.amazonaws.com/demoreact
+      - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
+      - echo COMMIT_HASH
+      - echo IMAGE_TAG
   build:
     commands:
       - echo Running tests
       - npm run test:nowatch
       - echo building and tagging docker image
+      - echo Building Packages for "$CODEBUILD_SOURCE_REPO_URL" on "$CODEBUILD_WEBHOOK_HEAD_REF" branch with build no "$CODEBUILD_BUILD_NUMBER" with commit "$CODEBUILD_RESOLVED_SOURCE_VERSION" triggered by "$CODEBUILD_INITIATOR"
       - aws ecr get-login-password --region ap-southeast-2 | docker login --username AWS --password-stdin 535662744569.dkr.ecr.ap-southeast-2.amazonaws.com
       - docker build -t demoreact .
-      - docker tag demoreact:latest 535662744569.dkr.ecr.ap-southeast-2.amazonaws.com/demoreact:latest
+      - docker tag demoreact:latest $REPOSITORY_URI:IMAGE_TAG
 
   post_build:
     commands:
       - echo pushing image to the ECR
-      - docker push 535662744569.dkr.ecr.ap-southeast-2.amazonaws.com/demoreact:latest
+      - docker push $REPOSITORY_URI:latest
+      - docker push $REPOSITORY_URI:$IMAGE_TAG
       - printf '[{"name":"react","imageUri":"535662744569.dkr.ecr.ap-southeast-2.amazonaws.com/demoreact:latest"}]' > imagedefinitions.json
       - cat imagedefinitions.json
 # artifacts:
