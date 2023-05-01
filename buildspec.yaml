@@ -3,11 +3,11 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      nodejs: 12
-      npm install
+      - nodejs: 12
   pre_build:
     commands:
       - echo Installing dependencies
+      - npm install
       - REPOSITORY_URI=535662744569.dkr.ecr.ap-southeast-2.amazonaws.com/demoreact
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
