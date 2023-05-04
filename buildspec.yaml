@@ -30,6 +30,6 @@ phases:
       - docker push $REPOSITORY_URI:$IMAGE_TAG
       - printf '[{"name":"react","imageUri":"535662744569.dkr.ecr.ap-southeast-2.amazonaws.com/demoreact:latest"}]' > imagedefinitions.json
       - cat imagedefinitions.json
-# artifacts:
-#   files:
-#     - imagedefinitions.json
+artifacts:
+  files:
+    - imagedefinitions.json
