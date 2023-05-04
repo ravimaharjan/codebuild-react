@@ -28,7 +28,7 @@ phases:
       - echo pushing image to the ECR
       - docker push $REPOSITORY_URI:latest
       - docker push $REPOSITORY_URI:$IMAGE_TAG
-      - printf '[{"name":"react","imageUri":"535662744569.dkr.ecr.ap-southeast-2.amazonaws.com/demoreact:latest"}]' > imagedefinitions.json
+      - printf '[{"name":"ExpressApp","imageUri":"535662744569.dkr.ecr.ap-southeast-2.amazonaws.com/demoreact:latest"}]' > imagedefinitions.json
       - cat imagedefinitions.json
 artifacts:
   files:
