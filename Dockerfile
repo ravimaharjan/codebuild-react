@@ -22,7 +22,7 @@ RUN npm run build
 # Set the env to "production"
 ENV NODE_ENV production
 
-EXPOSE 5000
+EXPOSE 80
 # Start the app
 CMD [ "npx", "serve", "build" ]
 # CMD ["npm", "start"]
