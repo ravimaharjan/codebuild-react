@@ -17,12 +17,12 @@ COPY . .
 # ==== BUILD =====
 
 # Build the app
-RUN npm run build
+# RUN npm run build
 # ==== RUN =======
 # Set the env to "production"
 ENV NODE_ENV production
 
-EXPOSE 80
+EXPOSE 5000
 # Start the app
 # CMD [ "npx", "serve", "build" ]
 CMD ["npm", "start"]
