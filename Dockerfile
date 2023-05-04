@@ -3,7 +3,7 @@
 
 # ==== CONFIGURE =====
 # Use a Node 16 base image
-FROM node:12-alpine 
+FROM 535662744569.dkr.ecr.ap-southeast-2.amazonaws.com/basenode:latest
 # Set the working directory to /app inside the container
 WORKDIR /app
 # Copy app files
